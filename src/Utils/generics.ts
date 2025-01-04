@@ -190,7 +190,8 @@ export const generateMessageIDV2 = (userId?: string): string => {
 }
 
 // generate a random ID to attach to a message
-export const generateMessageID = () => 'NZX#' + randomBytes(6).toString('hex').toUpperCase()
+const RN = () => Math.floor(Math.random() * (10 - 6 + 1)) + 6
+export const generateMessageID = () => 'NZX#' + randomBytes(RN()).toString('hex').toUpperCase()
 
 export function bindWaitForEvent<T extends keyof BaileysEventMap>(ev: BaileysEventEmitter, event: T) {
 	return async(check: (u: BaileysEventMap[T]) => boolean | undefined, timeoutMs?: number) => {
